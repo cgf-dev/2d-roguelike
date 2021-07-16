@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Variables
 
+    // Combat Variables
+    public float playerHealth = 100f;
+    public float playerDamage = 10f;
 
+    // Movement Variables
     public float moveSpeed;
     private Vector2 moveDirection;
 
+    // Declarations
     private Rigidbody2D rb;
-
     private PointAndShoot shootScript;
     
 
@@ -23,6 +28,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerInputs();
+
+        
     }
 
     void FixedUpdate()
@@ -42,6 +49,16 @@ public class Player : MonoBehaviour
     void Movement()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    
+
+    public void PlayerTakeDamage(float damageToTake)
+    {
+        playerHealth -= damageToTake;
+        // Screen shake
+        // Colour change
+        // Die
     }
 
 
