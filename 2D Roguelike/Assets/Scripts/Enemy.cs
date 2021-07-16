@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    // Movement Variables
     public float enemyMoveSpeed;
     public float stoppingDistance;
     public float retreatDistance;
 
+    // Combat Variables
     private float timeBetweenShots;
     public float startTimeBetweenShots;
     public float enemyBulletSpeed = 60f;
+    public float enemyHealth = 50f;
+
+
 
     public GameObject enemyBullet;
+    public GameObject bulletStart;
     public Transform player;
 
     void Start()
@@ -57,7 +62,7 @@ public class Enemy : MonoBehaviour
         if (timeBetweenShots <= 0)
         {
             GameObject eBullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
-            eBullet.transform.position = transform.position;
+            eBullet.transform.position = bulletStart.transform.position;
             eBullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, (rotationZ + 90));
             eBullet.GetComponent<Rigidbody2D>().velocity = direction * enemyBulletSpeed;
 
@@ -68,7 +73,14 @@ public class Enemy : MonoBehaviour
             timeBetweenShots -= Time.deltaTime;
         }
         #endregion
+
     }
 
+    public void EnemyTakeDamage(float damageToTake)
+    {
+        enemyHealth -= damageToTake;
+        // Colour change
+        // Die
+    }
 
 }
