@@ -14,18 +14,28 @@ public class Enemy : MonoBehaviour
     public float startTimeBetweenShots;
     public float enemyBulletSpeed = 60f;
     public float enemyHealth = 50f;
+    public float timeToColorOnHit = 0.05f;
+    private bool isHit = false;
+    // Loot
+    public int coinsToDrop;
+    public GameObject Coin;
 
-
-
+    // Declarations
     public GameObject enemyBullet;
     public GameObject bulletStart;
     public Transform player;
+    private SpriteRenderer[] spriteRenderers;
+    private Color defaultColor;
+    private Color isHitColor;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         timeBetweenShots = startTimeBetweenShots;
+
+        RefreshSpriteRenderersList();
+        defaultColor = this.GetComponent<SpriteRenderer>().color;
+        isHitColor = Color.white;
     }
 
 
@@ -79,8 +89,47 @@ public class Enemy : MonoBehaviour
     public void EnemyTakeDamage(float damageToTake)
     {
         enemyHealth -= damageToTake;
-        // Colour change
+        // Colour Change
+        if (!isHit)
+        {
+            isHit = true;
+            StartCoroutine("SwitchColor");
+        }
         // Die
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+            // Drop Coins
+
+
+            for (int i = 0; i < coinsToDrop; i++)
+            {
+                Vector2 randomOffset = new Vector2(Random.Range(-0.75f, 0.75f), Random.Range(-0.75f, 0.75f));
+                GameObject coin = Instantiate(Coin, randomOffset, transform.rotation);
+                randomOffset = new Vector2(Random.Range(-0.75f, 0.75f), Random.Range(-0.75f, 0.75f));
+            } 
+        }
+    }
+
+
+    private void RefreshSpriteRenderersList()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+
+    private IEnumerator SwitchColor()
+    {
+        foreach (SpriteRenderer r in spriteRenderers)
+        {
+            r.color = isHitColor;
+        }
+        yield return new WaitForSeconds(timeToColorOnHit);
+        foreach (SpriteRenderer r in spriteRenderers)
+        {
+            r.color = defaultColor;
+        }
+        isHit = false;
     }
 
 }

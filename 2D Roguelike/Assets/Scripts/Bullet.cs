@@ -6,18 +6,14 @@ public class Bullet : MonoBehaviour
 {
 
     public float damage = 10f;
+    public float lifetime = 10f;
 
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    Enemy enemy = other.GetComponent<Enemy>();
-    //    if (enemy != null)
-    //    {
-    //        Debug.Log("hit!!!");
-    //        enemy.EnemyTakeDamage(damage);
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+    private void Start()
+    {
+        Destroy(this.gameObject, lifetime);
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {

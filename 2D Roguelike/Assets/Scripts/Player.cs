@@ -7,8 +7,11 @@ public class Player : MonoBehaviour
     // Variables
 
     // Combat Variables
-    public float playerHealth = 100f;
+    public int playerHealth = 100;
     public float playerDamage = 10f;
+    public float timeToColorOnHit = 0.05f;
+    private bool isHit = false;
+    public int playerCoins = 0;
 
     // Movement Variables
     public float moveSpeed;
@@ -17,19 +20,25 @@ public class Player : MonoBehaviour
     // Declarations
     private Rigidbody2D rb;
     private PointAndShoot shootScript;
-    
+
+    private SpriteRenderer[] spriteRenderers;
+    private Color defaultColor;
+    private Color isHitColor;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         shootScript = FindObjectOfType<Camera>().GetComponent<PointAndShoot>();
+
+        RefreshSpriteRenderersList();
+        defaultColor = this.GetComponent<SpriteRenderer>().color;
+        isHitColor = Color.white;
     }
 
     void Update()
     {
         PlayerInputs();
-
-        
     }
 
     void FixedUpdate()
@@ -53,13 +62,46 @@ public class Player : MonoBehaviour
 
     
 
-    public void PlayerTakeDamage(float damageToTake)
+    public void PlayerTakeDamage(int damageToTake)
     {
         playerHealth -= damageToTake;
-        // Screen shake
         // Colour change
+        if (!isHit)
+        {
+            isHit = true;
+            StartCoroutine("SwitchColor");
+        }
         // Die
+        if (playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
+    public void PlayerGainsCoins(int coinsToGive)
+    {
+        playerCoins += coinsToGive;
+    }
+
+
+    private void RefreshSpriteRenderersList()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+
+    private IEnumerator SwitchColor()
+    {
+        foreach (SpriteRenderer r in spriteRenderers)
+        {
+            r.color = isHitColor;
+        }
+        yield return new WaitForSeconds(timeToColorOnHit);
+        foreach (SpriteRenderer r in spriteRenderers)
+        {
+            r.color = defaultColor;
+        }
+        isHit = false;
+    }
 }

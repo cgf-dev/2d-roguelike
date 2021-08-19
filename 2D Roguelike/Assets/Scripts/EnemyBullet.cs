@@ -5,7 +5,13 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
 
-    public float damage = 10f;
+    public int damage = 10;
+    public float lifetime = 10f;
+
+    private void Start()
+    {
+        Destroy(this.gameObject, lifetime);
+    }
 
 
     private void OnCollisionEnter2D(Collision2D other)
