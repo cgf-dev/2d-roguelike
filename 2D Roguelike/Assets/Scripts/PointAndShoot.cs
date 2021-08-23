@@ -5,13 +5,17 @@ using UnityEngine;
 public class PointAndShoot : MonoBehaviour
 {
 
-    public GameObject player;
+    public GameObject Player;
     public GameObject Crosshair;
+
+    public float fireRateHere = 1f;
+    public float nextFire = 0f;
+    public float bulletSpeed = 60f;
     
+
     private Vector3 target;
     public float rotationZ;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 60f;
     public GameObject bulletStart;
 
 
@@ -31,13 +35,17 @@ public class PointAndShoot : MonoBehaviour
         Crosshair.transform.position = new Vector2(target.x, target.y);
 
         // Find difference between player and crosshair
-        Vector3 difference = target - player.transform.position;
+        Vector3 difference = target - Player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        // ***OPTIONAL*** - Rotate player to move with crosshair
-        player.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+        // Rotate player to move with crosshair
+        Player.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-        if (Input.GetMouseButtonDown(0))
+        // Check if firerate is sufficient
+        fireRateHere = Player.GetComponent<Player>().playerFireRate;
+
+        if ((Input.GetMouseButton(0)) && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRateHere;
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();

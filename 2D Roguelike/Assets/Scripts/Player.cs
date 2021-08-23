@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     // Combat Variables
     public int playerHealth = 100;
     public float playerDamage = 10f;
+    public float playerFireRate = 1f;
     public float timeToColorOnHit = 0.05f;
     private bool isHit = false;
     public int playerCoins = 0;
