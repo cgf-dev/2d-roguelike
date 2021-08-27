@@ -912,6 +912,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &505449980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6875975096746244930, guid: 38bb8d58a521fca46b2848c3eca6fc8a, type: 3}
+  m_PrefabInstance: {fileID: 1918951364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &505449982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505449980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee9243fe3b376b40887bb271e6f4217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openingDirection: 0
 --- !u!1 &519126150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6144280907982912628, guid: 38bb8d58a521fca46b2848c3eca6fc8a, type: 3}
@@ -2805,6 +2823,10 @@ PrefabInstance:
       propertyPath: openingDirection
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6875975096746244930, guid: 38bb8d58a521fca46b2848c3eca6fc8a, type: 3}
+      propertyPath: m_Name
+      value: Spawn Point (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4771366780404474109, guid: 38bb8d58a521fca46b2848c3eca6fc8a, type: 3}
     - {fileID: 7846003574140198248, guid: 38bb8d58a521fca46b2848c3eca6fc8a, type: 3}
@@ -2912,6 +2934,8 @@ MonoBehaviour:
   - {fileID: 6144280908104310182, guid: 1db18a5c36862eb4ebaa8016407b53bd, type: 3}
   - {fileID: 6144280908104310182, guid: fa1be388b63933c47b4fd82455eae66c, type: 3}
   - {fileID: 6144280908104310182, guid: e05ecd16d2cc65142a8e384b7d9c70a5, type: 3}
+  closedRoom: {fileID: 6144280908104310182, guid: 68b3e8e7cb94e174f9c9094bce3f681e, type: 3}
+  rooms: []
 --- !u!4 &1941669402
 Transform:
   m_ObjectHideFlags: 0
