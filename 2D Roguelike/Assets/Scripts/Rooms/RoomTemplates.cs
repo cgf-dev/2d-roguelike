@@ -11,5 +11,24 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] rightRooms;
 
     public GameObject closedRoom;
+
     public List<GameObject> rooms;
+
+    public float waitTime;
+    private bool spawnedPortal;
+    public GameObject portal;
+
+    void Update()
+    {
+        if (waitTime <= 0 && spawnedPortal == false)
+        {
+
+            Instantiate(portal, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            spawnedPortal = true;
+        }
+        else
+        {
+            waitTime -= Time.deltaTime;
+        }
+    }
 }
