@@ -11,12 +11,14 @@ public class PointAndShoot : MonoBehaviour
     public float fireRateHere = 1f;
     public float nextFire = 0f;
     public float bulletSpeed = 60f;
+    public float bigBulletSpeed = 100f;
     
 
     private Vector3 target;
     public float rotationZ;
     public GameObject bulletPrefab;
     public GameObject bulletStart;
+    public GameObject bigBulletPrefab;
 
 
     void Start()
@@ -52,12 +54,28 @@ public class PointAndShoot : MonoBehaviour
             Shoot(direction, rotationZ);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            float distance = difference.magnitude;
+            Vector2 direction = difference / distance;
+            direction.Normalize();
+            BigBullet(direction, rotationZ);
+        }
+
         void Shoot(Vector2 direction, float rotationZ)
         {
             GameObject bullet = Instantiate(bulletPrefab) as GameObject;
             bullet.transform.position = bulletStart.transform.position;
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, (rotationZ + 90));
             bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+        }
+
+        void BigBullet(Vector2 direction, float rotationZ)
+        {
+            GameObject bigBullet = Instantiate(bigBulletPrefab) as GameObject;
+            bigBullet.transform.position = bulletStart.transform.position;
+            bigBullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, (rotationZ + 90));
+            bigBullet.GetComponent<Rigidbody2D>().velocity = direction * bigBulletSpeed;
         }
     }
 }

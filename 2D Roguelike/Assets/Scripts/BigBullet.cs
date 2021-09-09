@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BigBullet : MonoBehaviour
 {
     // Variables
-    public float damage = 10f;
-    public float lifetime = 10f;
+    public float damage = 30f;
+    public float lifetime = 20f;
 
 
     private void Start()
@@ -20,9 +20,9 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             other.rigidbody.GetComponent<Enemy>().EnemyTakeDamage(damage);
-            Destroy(this.gameObject);
         }
     }
+
 
 
 }
