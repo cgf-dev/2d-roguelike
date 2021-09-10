@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointAndShoot : MonoBehaviour
 {
@@ -11,13 +12,19 @@ public class PointAndShoot : MonoBehaviour
     public float fireRateHere = 1f;
     public float nextFire = 0f;
     public float bulletSpeed = 60f;
+
     public float bigBulletSpeed = 100f;
+    public float bigBulletCooldown = 5f;
+    public float nextBigBullet = 0f;
+    public bool bigBulletReady = true;
+    public Slider bigBulletSlider;
     
 
     private Vector3 target;
     public float rotationZ;
     public GameObject bulletPrefab;
     public GameObject bulletStart;
+
     public GameObject bigBulletPrefab;
 
 
@@ -54,12 +61,30 @@ public class PointAndShoot : MonoBehaviour
             Shoot(direction, rotationZ);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+        // bigBullet Cooldown
+        if (nextBigBullet >= bigBulletCooldown)
         {
+            bigBulletReady = true;
+        }
+        else
+        {
+            bigBulletReady = false;
+            nextBigBullet += Time.deltaTime;
+            nextBigBullet = Mathf.Clamp(nextBigBullet, 0f, bigBulletCooldown);
+        }
+
+        // Update bigBulletSlider
+        bigBulletSlider.value = nextBigBullet / bigBulletCooldown;
+
+        if (Input.GetKeyDown(KeyCode.Space) && bigBulletReady)
+        {
+            //nextBigBullet = Time.time + bigBulletCooldown;
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
             BigBullet(direction, rotationZ);
+            nextBigBullet = 0f;
         }
 
         void Shoot(Vector2 direction, float rotationZ)
