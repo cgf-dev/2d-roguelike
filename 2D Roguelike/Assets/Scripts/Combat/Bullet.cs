@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    // Variables
     public float damage = 10f;
     public float lifetime = 10f;
 
+    private Player player;
 
-    private void Start()
+
+    void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Destroy(this.gameObject, lifetime);
     }
 
+    void Update()
+    {
+        damage = player.playerDamage;
+    }
 
-    private void OnCollisionEnter2D(Collision2D other)
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
