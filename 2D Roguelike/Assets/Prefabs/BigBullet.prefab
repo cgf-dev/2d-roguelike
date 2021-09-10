@@ -135,4 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  lifetime: 20
+  lifetime: 3
+  numberOfProjectiles: 8
+  projectileSpeed: 30
+  Bullet: {fileID: 1701326303751817021, guid: dfdb70d1c5977504fa02763e5af3be54, type: 3}
