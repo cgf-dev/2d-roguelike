@@ -28,7 +28,7 @@ public class BigBullet : MonoBehaviour
         //Destroy(this.gameObject, lifetime);
     }
 
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")

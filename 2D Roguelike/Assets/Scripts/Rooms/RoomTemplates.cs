@@ -20,6 +20,7 @@ public class RoomTemplates : MonoBehaviour
 
     void Update()
     {
+        // Spawn portal in end room
         if (waitTime <= 0 && spawnedPortal == false)
         {
 

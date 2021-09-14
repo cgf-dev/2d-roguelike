@@ -21,7 +21,7 @@ public class PointAndShoot : MonoBehaviour
     
 
     private Vector3 target;
-    public float rotationZ;
+    private float rotationZ;
     public GameObject bulletPrefab;
     public GameObject bulletStart;
 
