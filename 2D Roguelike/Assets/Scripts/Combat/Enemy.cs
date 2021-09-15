@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     public float enemyHealth = 50f;
     public float timeToColorOnHit = 0.05f;
     private bool isHit = false;
+    public bool inRange = false;
+    public float enemyRange = 10f;
+
     // Loot
     public int coinsToDrop;
     public GameObject Coin;
@@ -41,6 +44,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        
         #region Movement
         // If closer than stopping distance, move towards player
         if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
@@ -83,6 +87,7 @@ public class Enemy : MonoBehaviour
             timeBetweenShots -= Time.deltaTime;
         }
         #endregion
+
 
     }
 
@@ -132,5 +137,10 @@ public class Enemy : MonoBehaviour
         isHit = false;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, enemyRange);
+    }
 
 }

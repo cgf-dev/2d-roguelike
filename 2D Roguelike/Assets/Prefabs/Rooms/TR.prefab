@@ -1067,6 +1067,7 @@ GameObject:
   - component: {fileID: 6144280908104310181}
   - component: {fileID: 7238782327689162062}
   - component: {fileID: 8006830318506589861}
+  - component: {fileID: 8927472482237179670}
   m_Layer: 0
   m_Name: TR
   m_TagString: Untagged
@@ -1119,12 +1120,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cf0cf6b6e38e94cb42f185979b9a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enteredRoom: 0
   enemySpawnPoints:
   - {fileID: 1930036579140041454}
   - {fileID: 8114297087671317314}
   - {fileID: 4484087395854004636}
   - {fileID: 2707192487286933446}
   enemy: {fileID: 7432171823093540894, guid: c1cc452a03204ed4fad7706d71a9322d, type: 3}
+  walls: {fileID: 6144280908104310182, guid: 70ab27ec192d933438649b4abc016ef4, type: 3}
+--- !u!61 &8927472482237179670
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144280908104310182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.8, y: 6.8}
+  m_EdgeRadius: 0
 --- !u!1 &6144280908269459284
 GameObject:
   m_ObjectHideFlags: 0
